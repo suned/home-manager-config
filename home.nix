@@ -12,6 +12,7 @@
     pkgs.direnv
     pkgs.slack
     pkgs.pre-commit
+    pkgs._1password
   ];
 
   programs.vscode = {
