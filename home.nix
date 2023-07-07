@@ -59,6 +59,7 @@
       # nix
       nf = "nix flake";
       nfl = "nix flake lock";
+      nfc = "nix flake check";
       ne = "env EDITOR=bat nix edit";
       nr = "nix repl";
 

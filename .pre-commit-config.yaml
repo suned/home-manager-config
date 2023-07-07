@@ -10,5 +10,11 @@ repos:
       - id: nix-fmt
         name: format .nix files
         files: \.nix$
-        entry: nix run nixpkgs#nixpkgs-fmt
+        entry: nix fmt
         language: system
+      - id: nix-flake-check
+        name: check flake
+        entry: nix flake check
+        language: system
+        files: \.nix$
+        pass_filenames: false

@@ -6,38 +6,16 @@ My home manager configuration for `nix`.
 
 1. Install `nix`.
 
-2. Add a `flake.nix` to `~/.config/home-manager` with this content
-   ```nix
-   {
-    description = "Home Manager configuration";
-
-    inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-        home-manager = {
-            url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        home-manager-config = {
-            url = "github:suned/home-manager-config";
-            flake = false;
-        };
-    };
-
-    outputs =
-        { nixpkgs, home-manager, nix-vscode-extensions, home-manager-config, ... }:
-            let
-                user = { username = "your.username"; email = "your.email@host.com"; };
-            in import home-manager-config
-                {
-                    inherit user nixpkgs nix-vscode-extensions home-manager;
-                };
-    }
-
+2. Create Home Manager config directory and enter it:
+   ```bash
+   mkdir ~/.config/home-manager; cd ~/.config/home-manager
    ```
-3. Run `cd ~/.config/home-manager; nix run . switch` (on subsequent changes `home-manager switch` may be used since home manager is installed and managed by itself after first initialization).
-4. If making changes:
-    1. Clone this repo and make desired changes.
-    2. Change the url of `home-manager-config` to local path
-    3. Run `nix flake update`
-    4. Run `home-manager switch`
+3. Run `flake init`:
+   ```bash
+   nix flake init --template github:suned/home-manager-config
+   ```
+4. Run `home-manager switch`:
+   ```
+   nix run home-manager/release-23.05 -- switch
+   ```
+   Its only necessary to use `nix run` the first time, subsequently `home-manager` is installed by the configuration.
