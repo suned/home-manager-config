@@ -1,6 +1,4 @@
-{ user, pkgs, vscode-marketplace, ... }:
-
-{
+{ user, pkgs, vscode-marketplace, ... }: {
   home.stateVersion = "23.05";
 
   programs.home-manager.enable = true;
@@ -12,7 +10,6 @@
     pkgs.direnv
     pkgs.slack
     pkgs.pre-commit
-    pkgs._1password
   ];
 
   programs.vscode = {
@@ -58,6 +55,15 @@
       gp = "git push";
       gco = "git checkout";
       gpu = "git push --set-upstream origin (eval \"git branch --show-current\")";
+
+      # nix
+      nf = "nix flake";
+      nfl = "nix flake lock";
+      ne = "env EDITOR=bat nix edit";
+      nr = "nix repl";
+
+      # home-manager
+      hms = "home-manager switch";
     };
 
     plugins = [
@@ -88,12 +94,27 @@
       ".envrc"
       ".direnv"
     ];
+
+    delta = {
+      enable = true;
+      options = {
+        syntax-theme = "Solarized (light)";
+        side-by-side = true;
+        navigate = true;
+      };
+    };
   };
 
   programs.bat = {
     enable = true;
     config = {
       theme = "Solarized (light)";
+    };
+  };
+
+  home.file = {
+    ".ssh/config" = {
+      source = ./dotfiles/ssh/config;
     };
   };
 }
