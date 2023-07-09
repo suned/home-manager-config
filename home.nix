@@ -10,6 +10,8 @@
     pkgs.direnv
     pkgs.slack
     pkgs.pre-commit
+    pkgs.nil
+    pkgs.nixpkgs-fmt
   ];
 
   programs.vscode = {
@@ -18,8 +20,8 @@
     extensions = with vscode-marketplace; [
       ms-python.python
       ms-python.mypy-type-checker
-      bbenoist.nix
       usernamehw.errorlens
+      jnoortheen.nix-ide
     ];
     userSettings = {
       "window.commandCenter" = false;
@@ -32,6 +34,15 @@
       "workbench.colorCustomizations" = {
         "editorCursor.foreground" = "#dc322f";
         "terminalCursor.foreground" = "#dc322f";
+      };
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
+      "nix.serverSettings" = {
+        "nil" = {
+          "formatting" = {
+            "command" = [ "nixpkgs-fmt" ];
+          };
+        };
       };
     };
   };
