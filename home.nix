@@ -28,6 +28,7 @@
       "editor.fontFamily" = "Hack Nerd Font";
       "editor.fontSize" = 17;
       "editor.cursorStyle" = "block";
+      "editor.formatOnSave" = true;
       "workbench.editor.showTabs" = false;
       "workbench.colorTheme" = "Solarized Light";
       "workbench.activityBar.visible" = false;
