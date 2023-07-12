@@ -39,3 +39,12 @@ docker run --restart always --name nix-docker -d -p 3022:22 lnl7/nix:ssh
 (docker is not installed by the home-manager configuration but must be installed separately)
 
 Builds for `x86_64-linux` can now be executed in the docker container.
+
+
+## Fonts
+
+The configuration installs the hack font with ligatures downloaded from [pyrho/hack-font-ligature-nerd-font](https://github.com/pyrho/hack-font-ligature-nerd-font).
+
+## iTerm
+
+Iterm configuration is saved under `dotfiles/iterm` but are not installed by home manager. Can be loaded in iTerm by going to `"Preferences" -> "General" -> "Preferences"`.

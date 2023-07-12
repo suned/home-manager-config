@@ -1,12 +1,13 @@
 { user, pkgs, vscode-marketplace, ... }: {
   home.stateVersion = "23.05";
 
+
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
   home.packages = [
     pkgs.iterm2
-    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
+    (pkgs.nerdfonts.overrideAttrs (final: prev: { srcs = [ ./fonts/hack ]; }))
     pkgs.direnv
     pkgs.slack
     pkgs.pre-commit
@@ -28,7 +29,8 @@
     ];
     userSettings = {
       "window.commandCenter" = false;
-      "editor.fontFamily" = "Hack Nerd Font";
+      "editor.fontFamily" = "Hack Nerd Font Mono";
+      "editor.fontLigatures" = true;
       "editor.fontSize" = 17;
       "editor.cursorStyle" = "block";
       "editor.formatOnSave" = true;
