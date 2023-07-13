@@ -13,7 +13,6 @@
     pkgs.pre-commit
     pkgs.nil
     pkgs.nixpkgs-fmt
-    pkgs.hadolint
   ];
 
   programs.vscode = {
@@ -22,10 +21,8 @@
     extensions = with vscode-marketplace; [
       ms-python.python
       ms-python.mypy-type-checker
-      ms-azuretools.vscode-docker
       usernamehw.errorlens
       jnoortheen.nix-ide
-      exiasr.hadolint
     ];
     userSettings = {
       "window.commandCenter" = false;
@@ -133,13 +130,6 @@
   home.file = {
     ".ssh/config" = {
       source = ./dotfiles/ssh/config;
-    };
-    ".ssh/docker_rsa" = {
-      source = ./dotfiles/ssh/insecure_rsa;
-    };
-
-    ".config/nix/nix.conf" = {
-      source = ./dotfiles/nix/nix.conf;
     };
   };
 }
