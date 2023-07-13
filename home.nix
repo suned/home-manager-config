@@ -13,6 +13,7 @@
     pkgs.pre-commit
     pkgs.nil
     pkgs.nixpkgs-fmt
+    pkgs.hadolint
   ];
 
   programs.vscode = {
@@ -23,6 +24,7 @@
       ms-python.mypy-type-checker
       usernamehw.errorlens
       jnoortheen.nix-ide
+      exiasr.hadolint
     ];
     userSettings = {
       "window.commandCenter" = false;
