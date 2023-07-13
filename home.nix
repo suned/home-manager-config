@@ -131,5 +131,9 @@
     ".ssh/config" = {
       source = ./dotfiles/ssh/config;
     };
+
+    ".config/nix/nix.conf" = {
+      source = ./dotfiles/nix/nix.conf;
+    };
   };
 }
