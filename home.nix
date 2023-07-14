@@ -7,7 +7,7 @@
 
   home.packages = [
     pkgs.iterm2
-    (pkgs.nerdfonts.overrideAttrs (final: prev: { srcs = [ ./fonts/hack ]; }))
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     pkgs.direnv
     pkgs.slack
     pkgs.pre-commit
@@ -22,14 +22,15 @@
     extensions = with vscode-marketplace; [
       ms-python.python
       ms-python.mypy-type-checker
+      ms-azuretools.vscode-docker
       usernamehw.errorlens
       jnoortheen.nix-ide
       exiasr.hadolint
     ];
     userSettings = {
       "window.commandCenter" = false;
-      "editor.fontFamily" = "Hack Nerd Font Mono";
-      "editor.fontLigatures" = true;
+      "editor.fontFamily" = "JetBrainsMono Nerd Font";
+      "editor.fontLigatures" = "'zero'";
       "editor.fontSize" = 17;
       "editor.cursorStyle" = "block";
       "editor.formatOnSave" = true;

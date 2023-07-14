@@ -20,10 +20,6 @@ My home manager configuration for `nix`.
    ```
    Its only necessary to use `nix run` the first time, subsequently `home-manager` is installed by the configuration.
 
-## Fonts
-
-The configuration installs the hack font with ligatures downloaded from [pyrho/hack-font-ligature-nerd-font](https://github.com/pyrho/hack-font-ligature-nerd-font).
-
 ## iTerm
 
 Iterm configuration is saved under `dotfiles/iterm` but are not installed by home manager. Can be loaded in iTerm by going to `"Preferences" -> "General" -> "Preferences"`.
