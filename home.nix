@@ -71,7 +71,7 @@
       gcm = "git commit -m";
       gp = "git push";
       gco = "git checkout";
-      gpu = "git push --set-upstream origin (eval \"git branch --show-current\")";
+      gpu = "git push --set-upstream origin (git branch --show-current)";
 
       # nix
       nf = "nix flake";
