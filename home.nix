@@ -82,6 +82,10 @@
 
       # home-manager
       hms = "home-manager switch";
+
+      # python
+      p = "python";
+      ip = "ipython";
     };
 
     plugins = [
