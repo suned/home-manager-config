@@ -72,6 +72,8 @@
       gp = "git push";
       gco = "git checkout";
       gpu = "git push --set-upstream origin (git branch --show-current)";
+      gd = "git diff";
+      gl = "git log";
 
       # nix
       nf = "nix flake";
