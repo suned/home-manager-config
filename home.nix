@@ -9,7 +9,6 @@
     pkgs.iterm2
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     pkgs.direnv
-    pkgs.slack
     pkgs.pre-commit
     pkgs.nil
     pkgs.nixpkgs-fmt
