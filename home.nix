@@ -13,6 +13,8 @@
     pkgs.nil
     pkgs.nixpkgs-fmt
     pkgs.hadolint
+    pkgs.awscli2
+    pkgs.docker
   ];
 
   programs.vscode = {
@@ -25,12 +27,16 @@
       usernamehw.errorlens
       jnoortheen.nix-ide
       exiasr.hadolint
+      hashicorp.terraform
+      tamasfe.even-better-toml
+      ms-python.black-formatter
+      ms-python.pylint
     ];
     userSettings = {
       "window.commandCenter" = false;
       "editor.fontFamily" = "JetBrainsMono Nerd Font";
       "editor.fontLigatures" = "'zero'";
-      "editor.fontSize" = 17;
+      "editor.fontSize" = 13;
       "editor.cursorStyle" = "block";
       "editor.formatOnSave" = true;
       "workbench.editor.showTabs" = false;
@@ -47,6 +53,34 @@
           "formatting" = {
             "command" = [ "nixpkgs-fmt" ];
           };
+        };
+      };
+      "[python]" = {
+        "editor.defaultFormatter" = "ms-python.black-formatter";
+      };
+    };
+    keybindings = [
+      {
+        key = "cmd+k cmd+r";
+        command = "git.revertSelectedRanges";
+      }
+      {
+        key = "cmd+k cmd+t";
+        command = "editor.action.insertSnippet";
+        when = "editorTextFocus && editorLangId == python";
+        args = {
+          snippet = "reveal_type($TM_SELECTED_TEXT)";
+        };
+      }
+    ];
+    languageSnippets = {
+      python = {
+        ipdb = {
+          body = [
+            "import ipdb"
+            "ipdb.set_trace()"
+          ];
+          prefix = [ "ip" ];
         };
       };
     };
@@ -87,6 +121,15 @@
       # python
       p = "python";
       ip = "ipython";
+
+      # aws
+      ap = "aws-profile";
+    };
+
+    functions = {
+      aws-profile = {
+        body = "set -gx AWS_PROFILE $argv";
+      };
     };
 
     plugins = [
@@ -142,6 +185,10 @@
 
     ".config/nix/nix.conf" = {
       source = ./dotfiles/nix/nix.conf;
+    };
+
+    ".config/fish/completions/aws-profile.fish" = {
+      source = ./dotfiles/fish/completions/aws-profile.fish;
     };
   };
 }
