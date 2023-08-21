@@ -1,1 +1,2 @@
-complete -f -n "type -q aws" -c aws-profile -a "(aws configure list-profiles)"
+set profiles (cat ~/.aws/config | string match -r '\[profile .*\]' | string replace -r '\[profile (.*)\]' '$1' | string join ' ')
+complete -c aws-profile -f -a $profiles

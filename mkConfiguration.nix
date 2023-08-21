@@ -1,6 +1,6 @@
-{ user, nixpkgs, home-manager, nix-vscode-extensions, ... }:
+{ user, ssh_config, nixpkgs, home-manager, nix-vscode-extensions, ... }:
 let
-  system = "x86_64-darwin";
+  system = "aarch64-darwin";
   pkgs = nixpkgs.legacyPackages.${system};
   community-extensions = nix-vscode-extensions.extensions.${system};
   home = { homeDirectory = "/Users/${user.username}"; username = user.username; };
@@ -11,6 +11,6 @@ home-manager.lib.homeManagerConfiguration {
   modules = [ ./home.nix { inherit home; } ];
   extraSpecialArgs = {
     vscode-marketplace = community-extensions.vscode-marketplace;
-    inherit user;
+    inherit user ssh_config;
   };
 }

@@ -1,4 +1,4 @@
-{ user, pkgs, vscode-marketplace, ... }: {
+{ user, ssh_config, pkgs, vscode-marketplace, ... }: {
   home.stateVersion = "23.05";
 
 
@@ -8,13 +8,14 @@
   home.packages = [
     pkgs.iterm2
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    pkgs.direnv
     pkgs.pre-commit
     pkgs.nil
     pkgs.nixpkgs-fmt
     pkgs.hadolint
     pkgs.awscli2
     pkgs.docker
+    pkgs.python311
+    pkgs.direnv
   ];
 
   programs.vscode = {
@@ -22,7 +23,7 @@
     package = pkgs.vscode;
     extensions = with vscode-marketplace; [
       ms-python.python
-      ms-python.mypy-type-checker
+      matangover.mypy
       ms-azuretools.vscode-docker
       usernamehw.errorlens
       jnoortheen.nix-ide
@@ -55,6 +56,7 @@
           };
         };
       };
+      "mypy.runUsingActiveInterpreter" = true;
       "[python]" = {
         "editor.defaultFormatter" = "ms-python.black-formatter";
       };
@@ -63,6 +65,10 @@
       {
         key = "cmd+k cmd+r";
         command = "git.revertSelectedRanges";
+      }
+      {
+        key = "cmd+k cmd+d";
+        command = "editor.action.revealDefinition";
       }
       {
         key = "cmd+k cmd+t";
@@ -121,9 +127,13 @@
       # python
       p = "python";
       ip = "ipython";
+      pru = "poetry run";
 
       # aws
       ap = "aws-profile";
+
+      # terraform
+      tf = "terraform";
     };
 
     functions = {
@@ -180,7 +190,10 @@
 
   home.file = {
     ".ssh/config" = {
-      source = ./dotfiles/ssh/config;
+      text = ''
+        ${builtins.readFile ./dotfiles/ssh/config}
+        ${ssh_config}
+      '';
     };
 
     ".config/nix/nix.conf" = {
@@ -189,6 +202,10 @@
 
     ".config/fish/completions/aws-profile.fish" = {
       source = ./dotfiles/fish/completions/aws-profile.fish;
+    };
+
+    ".config/direnv/direnv.toml" = {
+      source = ./dotfiles/direnv/direnv.toml;
     };
   };
 }
