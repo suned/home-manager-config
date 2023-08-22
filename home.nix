@@ -16,6 +16,8 @@
     pkgs.docker
     pkgs.python311
     pkgs.direnv
+    pkgs.jq
+    pkgs.pgcli
   ];
 
   programs.vscode = {
@@ -206,6 +208,10 @@
 
     ".config/direnv/direnv.toml" = {
       source = ./dotfiles/direnv/direnv.toml;
+    };
+
+    ".config/direnv/direnvrc" = {
+      source = ./dotfiles/direnv/direnvrc;
     };
   };
 }
