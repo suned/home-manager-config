@@ -15,7 +15,7 @@
     (system:
       {
         formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
-        mkConfiguration = { user, ssh_config ? [ ] }: import ./mkConfiguration.nix { inherit user ssh_config nixpkgs nix-vscode-extensions home-manager; };
+        mkConfiguration = { user, ssh_config ? [ ] }: import ./mkConfiguration.nix { inherit user ssh_config nixpkgs nix-vscode-extensions home-manager system; };
       }
     ) // {
     templates.default = {

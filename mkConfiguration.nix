@@ -1,6 +1,5 @@
-{ user, ssh_config, nixpkgs, home-manager, nix-vscode-extensions, ... }:
+{ user, ssh_config, nixpkgs, home-manager, nix-vscode-extensions, system, ... }:
 let
-  system = "aarch64-darwin";
   pkgs = nixpkgs.legacyPackages.${system};
   community-extensions = nix-vscode-extensions.extensions.${system};
   home = { homeDirectory = "/Users/${user.username}"; username = user.username; };
