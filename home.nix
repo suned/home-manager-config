@@ -14,10 +14,13 @@
     pkgs.hadolint
     pkgs.awscli2
     pkgs.docker
+    pkgs.colima
     pkgs.python311
     pkgs.direnv
     pkgs.jq
     pkgs.pgcli
+    pkgs.gnumake
+    pkgs.just
   ];
 
   programs.vscode = {
@@ -34,6 +37,9 @@
       tamasfe.even-better-toml
       ms-python.black-formatter
       ms-python.pylint
+      streetsidesoftware.code-spell-checker
+      skellock.just
+      pkgs.vscode-extensions.github.copilot
     ];
     userSettings = {
       "window.commandCenter" = false;
@@ -49,6 +55,8 @@
         "editorCursor.foreground" = "#dc322f";
         "terminalCursor.foreground" = "#dc322f";
       };
+      "extensions.ignoreRecommendations" = true;
+      "git.openRepositoryInParentFolders" = "always";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
       "nix.serverSettings" = {
@@ -136,6 +144,9 @@
 
       # terraform
       tf = "terraform";
+
+      # vscode
+      c = "code";
     };
 
     functions = {
@@ -171,6 +182,7 @@
     ignores = [
       ".envrc"
       ".direnv"
+      "scratch.py"
     ];
 
     delta = {
