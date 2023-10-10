@@ -21,6 +21,9 @@
     pkgs.pgcli
     pkgs.gnumake
     pkgs.just
+    pkgs.eza
+    pkgs.telepresence2
+    pkgs.kubectl
   ];
 
   programs.vscode = {
@@ -40,6 +43,7 @@
       streetsidesoftware.code-spell-checker
       skellock.just
       pkgs.vscode-extensions.github.copilot
+      eamodio.gitlens
     ];
     userSettings = {
       "window.commandCenter" = false;
@@ -153,6 +157,10 @@
       aws-profile = {
         body = "set -gx AWS_PROFILE $argv";
       };
+    };
+
+    shellAliases = {
+      ls = "eza --icons -F -H --git --group-directories-first";
     };
 
     plugins = [
