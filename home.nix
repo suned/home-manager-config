@@ -151,6 +151,9 @@
 
       # vscode
       c = "code";
+
+      # pre-commit
+      pre = "pre-commit";
     };
 
     functions = {
@@ -161,6 +164,7 @@
 
     shellAliases = {
       ls = "eza --icons -F -H --git --group-directories-first";
+      g = "bf go";
     };
 
     plugins = [
@@ -173,6 +177,15 @@
           sha256 = "RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
         };
       }
+      {
+        name = "bookmarks.fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "gregorias";
+          repo = "bookmarks.fish";
+          rev = "c93b4dc";
+          sha256 = "07xwa6ifglnfyij0v4hh4qj7fc2a84v4m9p5dvr200aqxgsaf3ff";
+        };
+      }
     ];
   };
 
@@ -180,6 +193,9 @@
     enable = true;
     settings = {
       add_newline = false;
+      nix_shell = {
+        format = "via [$symbol$name]($style) ";
+      };
     };
   };
 
