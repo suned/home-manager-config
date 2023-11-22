@@ -31,7 +31,7 @@
     package = pkgs.vscode;
     extensions = with vscode-marketplace; [
       ms-python.python
-      matangover.mypy
+      ms-python.mypy-type-checker
       ms-azuretools.vscode-docker
       usernamehw.errorlens
       jnoortheen.nix-ide
@@ -44,8 +44,11 @@
       skellock.just
       pkgs.vscode-extensions.github.copilot
       eamodio.gitlens
+      rust-lang.rust-analyzer
+      charliermarsh.ruff
     ];
     userSettings = {
+      "update.mode" = "manual";
       "window.commandCenter" = false;
       "editor.fontFamily" = "JetBrainsMono Nerd Font";
       "editor.fontLigatures" = "'zero'";
@@ -70,10 +73,11 @@
           };
         };
       };
-      "mypy.runUsingActiveInterpreter" = true;
       "[python]" = {
         "editor.defaultFormatter" = "ms-python.black-formatter";
       };
+      "pylint.args" = [ "--disable=undefined-variable" ];
+      "mypy-type-checker.importStrategy" = "useBundled";
     };
     keybindings = [
       {
@@ -134,6 +138,7 @@
       nfc = "nix flake check";
       ne = "env EDITOR=bat nix edit";
       nr = "nix repl";
+      ns = "nix shell";
 
       # home-manager
       hms = "home-manager switch";
@@ -248,6 +253,10 @@
 
     ".config/direnv/direnvrc" = {
       source = ./dotfiles/direnv/direnvrc;
+    };
+
+    ".config/wezterm/wezterm.lua" = {
+      source = ./dotfiles/wezterm/wezterm.lua;
     };
   };
 }
